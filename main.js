@@ -1,9 +1,11 @@
-invoices = '[{"customer": "MDT", "performance": [{"playId": "Гамлет", "audience": 55, "type": "tragedy"},{"playId": "Ромео и Джульетта", "audience": 35, "type": "tragedy"},{"playId": "Отелло", "audience": 40, "type": "comedy"}]}]';
+let invoices = '[{"customer": "MDT", "performance": [{"playId": "Гамлет", "audience": 55, "type": "tragedy"},{"playId": "Ромео и Джульетта", "audience": 35, "type": "tragedy"},{"playId": "Отелло", "audience": 40, "type": "comedy"}]}]';
 const tragedyType = "tragedy";
 const comedyType = "comedy";
 const maxQuantityOfAudienceForComedy = 20;
 const maxQuantityOfAudienceForTragedy = 30;
-statement(invoices);
+let result = "";
+let showResult=statement(invoices);
+console.log(showResult);
 
 function statement(invoices) {
     let parsedInvoices = parseIncomingJsonFile(invoices);
@@ -31,11 +33,12 @@ function statement(invoices) {
             }
             let bonus = generalBonusCalculation(performance.audience);
             bonus += comedyBonusCalculation(bonus, performance.audience);
-            console.log(resultForCustomerExpenses(playId, calculatedFeeToPay, performance.audience));
-            console.log(resultCustomerFee(calculatedFeeToPay));
-            console.log(resultForCustomerBonuses(bonus));
+            result += resultForCustomerExpenses(playId, calculatedFeeToPay, performance.audience);
+            result += resultCustomerFee(calculatedFeeToPay);
+            result += resultForCustomerBonuses(bonus);
         }
-    })
+    });
+    return result;
 }
 
 function parseIncomingJsonFile(file) {
@@ -67,7 +70,6 @@ function formatCurrencyAmount(amount) {
 
 function resultCustomerFee(feeToPay) {
     return `Итого с Вас ${formatCurrencyAmount(feeToPay)}\n`;
-
 
 }
 
