@@ -48,7 +48,7 @@ function generalBonusCalculation(audience) {
 }
 
 function comedyBonusCalculation(currentBonus, audience) {
-    return currentBonus + Math.floor(audience / 5)
+    return currentBonus + Math.floor(audience / 10)
 
 }
 
