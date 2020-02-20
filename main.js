@@ -1,13 +1,13 @@
 let invoices = '[{"customer": "MDT", "performance": [{"playId": "Гамлет", "audience": 55, "type": "tragedy"},{"playId": "Ромео и Джульетта", "audience": 35, "type": "tragedy"},{"playId": "Отелло", "audience": 40, "type": "comedy"}]}]';
-const tragedyType = "tragedy";
-const comedyType = "comedy";
-const maxQuantityOfAudienceForComedy = 20;
-const maxQuantityOfAudienceForTragedy = 30;
-let result = "";
 let showResult=statement(invoices);
 console.log(showResult);
 
 function statement(invoices) {
+    const tragedyType = "tragedy";
+    const comedyType = "comedy";
+    const maxQuantityOfAudienceForComedy = 20;
+    const maxQuantityOfAudienceForTragedy = 30;
+    let result = "";
     let parsedInvoices = parseIncomingJsonFile(invoices);
     parsedInvoices.forEach(function (invoice) {
         let calculatedFeeToPay = 0;
